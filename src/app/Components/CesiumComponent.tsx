@@ -2,10 +2,8 @@
 
 import React from 'react'
 import type { CesiumType } from '../types/cesium'
-import { Cesium3DTileset, type Entity, type Viewer } from 'cesium';
+import { type Viewer } from 'cesium';
 import type { Position } from '../types/position';
-//NOTE: It is important to assign types using "import type", not "import"
-import { dateToJulianDate } from '../example_utils/date';
 //NOTE: This is required to get the stylings for default Cesium UI and controls
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 
@@ -18,7 +16,6 @@ export const CesiumComponent: React.FunctionComponent<{
 }) => {
     const cesiumViewer = React.useRef<Viewer | null>(null);
     const cesiumContainerRef = React.useRef<HTMLDivElement>(null);
-    const addedScenePrimitives = React.useRef<Cesium3DTileset[]>([]);
     const [isLoaded, setIsLoaded] = React.useState(false);
 
     const resetCamera = React.useCallback(async () => {
@@ -32,30 +29,45 @@ export const CesiumComponent: React.FunctionComponent<{
               });
         }
     }, []);
-
-    // const cleanUpPrimitives = React.useCallback(() => {
-    //     //On NextJS 13.4+, React Strict Mode is on by default.
-    //     //The block below will remove all added primitives from the scene.
-    //     addedScenePrimitives.current.forEach(scenePrimitive => {
-    //         if (cesiumViewer.current !== null) {
-    //             cesiumViewer.current.scene.primitives.remove(scenePrimitive);
-    //         }
-    //     });
-    //     addedScenePrimitives.current = [];
-    // }, []);
     
     const initializeCesiumJs = React.useCallback(async () => {
         if (cesiumViewer.current !== null) {
-            //Clean up potentially already-existing primitives.
-            // cleanUpPrimitives();
-            
-            //Position camera per Sandcastle demo
             resetCamera();
+            createModel();
 
             //Set loaded flag
             setIsLoaded(true);
         }
     }, [positions]);
+
+    const createModel = React.useCallback(() => {
+        cesiumViewer.current?.entities.removeAll();
+      
+        const position = CesiumJs.Cartesian3.fromDegrees(
+          -122.094636,
+          37.421960,
+          55000,
+        );
+        const heading = CesiumJs.Math.toRadians(135);
+        const pitch = 0;
+        const roll = 0;
+        const hpr = new CesiumJs.HeadingPitchRoll(heading, pitch, roll);
+        const orientation = CesiumJs.Transforms.headingPitchRollQuaternion(position, hpr);
+      
+        const entity = cesiumViewer.current?.entities.add({
+          name: "AcrimSAT.glb",
+          position: position,
+          orientation: orientation,
+          model: {
+            uri: "/AcrimSAT.glb",
+            minimumPixelSize: 128,
+            maximumScale: 20000,
+          },
+        });
+        if (cesiumViewer.current && entity) {
+          cesiumViewer.current.trackedEntity = entity;
+        }
+    }, [CesiumJs]);
 
     React.useEffect(() => {
         if (cesiumViewer.current === null && cesiumContainerRef.current) {
@@ -70,23 +82,13 @@ export const CesiumComponent: React.FunctionComponent<{
                 infoBox: false,
                 shouldAnimate: true,
             });
-
-            //NOTE: Example of configuring a Cesium viewer
-            // cesiumViewer.current.clock.clockStep = CesiumJs.ClockStep.SYSTEM_CLOCK_MULTIPLIER;
         }
-        
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {
         if (isLoaded) return;
         initializeCesiumJs();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [positions, isLoaded]);
-
-    const entities: Entity[] = [];
-    const julianDate = dateToJulianDate(CesiumJs, new Date());
 
     return (
         <div
