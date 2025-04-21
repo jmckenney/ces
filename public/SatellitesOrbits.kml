@@ -155,7 +155,7 @@
         
     </Folder>
     
-    <Folder>
+    <!-- <Folder>
         <name>LEO Sat 2</name>
         <Placemark>
             <name>Orbit</name>
@@ -1081,6 +1081,6 @@
             <Point><coordinates>-77,0,500000</coordinates></Point>
         </Placemark>
         
-    </Folder>
+    </Folder> -->
     </Document>
 </kml>
