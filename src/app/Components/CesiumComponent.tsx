@@ -29,16 +29,46 @@ export const CesiumComponent: React.FunctionComponent<{
               });
         }
     }, []);
+
+    const loadSatelliteData = React.useCallback(async () => {
+        try {
+            if (!cesiumViewer.current) return;
+
+            // Load KML orbit paths
+            const kmlDataSource = await CesiumJs.KmlDataSource.load("/SatellitesOrbits.kml");
+            cesiumViewer.current.dataSources.add(kmlDataSource);
+
+            // Configure the clock before loading CZML
+            const start = CesiumJs.JulianDate.fromIso8601("2025-04-21T00:00:00Z");
+            const stop = CesiumJs.JulianDate.fromIso8601("2025-04-21T01:00:00Z");
+            
+            // Set up the viewer's clock
+            cesiumViewer.current.clock.startTime = start;
+            cesiumViewer.current.clock.stopTime = stop;
+            cesiumViewer.current.clock.currentTime = start;
+            cesiumViewer.current.clock.clockRange = CesiumJs.ClockRange.LOOP_STOP;
+            cesiumViewer.current.clock.multiplier = 60;
+            cesiumViewer.current.clock.shouldAnimate = true;
+
+            // Load CZML satellite data
+            const czmlDataSource = await CesiumJs.CzmlDataSource.load("/SatellitesOverTime.czml");
+            await cesiumViewer.current.dataSources.add(czmlDataSource);
+            
+            // Zoom to show all satellites
+            await cesiumViewer.current.zoomTo(czmlDataSource);
+            
+        } catch (error) {
+            console.error("Error loading satellite data:", error);
+        }
+    }, [CesiumJs]);
     
     const initializeCesiumJs = React.useCallback(async () => {
         if (cesiumViewer.current !== null) {
             resetCamera();
-            createModel();
-
-            //Set loaded flag
+            await loadSatelliteData();
             setIsLoaded(true);
         }
-    }, [positions]);
+    }, [positions, loadSatelliteData, resetCamera]);
 
     const createModel = React.useCallback(() => {
         cesiumViewer.current?.entities.removeAll();
