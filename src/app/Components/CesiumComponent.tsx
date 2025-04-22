@@ -26,7 +26,7 @@ export const CesiumComponent: React.FunctionComponent<{
                 destination: CesiumJs.Cartesian3.fromDegrees(0, 0, 12000000), // Zoomed out to see the whole Earth
                 orientation: {
                   heading: CesiumJs.Math.toRadians(0),
-                  pitch: CesiumJs.Math.toRadians(-70),
+                  pitch: CesiumJs.Math.toRadians(-85),
                 },
             });
         }
@@ -98,8 +98,8 @@ export const CesiumComponent: React.FunctionComponent<{
     
     const initializeCesiumJs = React.useCallback(async () => {
         if (cesiumViewer.current !== null) {
-            resetCamera();
             await loadSatelliteData();
+            resetCamera();
             setIsLoaded(true);
         }
     }, [positions, loadSatelliteData, resetCamera]);
@@ -116,6 +116,7 @@ export const CesiumComponent: React.FunctionComponent<{
                 geocoder: false,
                 infoBox: true,
                 shouldAnimate: true,
+                // timeline: false, // If you want to hide timeline (and make a custom one)
             });
         }
     }, []);
