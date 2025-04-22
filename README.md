@@ -72,5 +72,10 @@ The application will be available at [http://localhost:3000](http://localhost:30
 - Turbopack is enabled for faster development builds
 - KML and CZML formats are used for orbit and event data
 
-### Credits
+## Cesium Integration Strategy
+- Do no harm. In other words, ensure easy future upgrades and only customize
+where heavily documented and supported by the Cesium team. For instance, official
+timeline editing is [not supported](https://groups.google.com/g/cesium-dev/c/WF065mEMqCI/m/6RL2_ygTAgAJ?pli=1).
+
+## Credits
 Thank you to [nextjs-ts-cesium-example](https://github.com/hyundotio/nextjs-ts-cesium-example/tree/main) for providing inspiration for the foundational boilerplate of this project.

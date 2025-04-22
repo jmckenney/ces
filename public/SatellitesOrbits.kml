@@ -47,7 +47,7 @@
     
     <Style id="ScheduledPhotoStyle">
         <IconStyle>
-            <scale>1.5</scale>
+            <scale>3.5</scale>
             <Icon>
                 <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
             </Icon>
@@ -61,15 +61,14 @@
 
     <Style id="CapturedPhotoStyle">
         <IconStyle>
-            <scale>1.5</scale>
+            <scale>3.5</scale>
             <Icon>
                 <href>http://maps.google.com/mapfiles/kml/shapes/camera.png</href>
             </Icon>
-            <color>ffff0000</color>
         </IconStyle>
         <LabelStyle>
             <scale>1.2</scale>
-            <color>ffffffff</color>
+            <color>ffffff</color>
         </LabelStyle>
     </Style>
 
