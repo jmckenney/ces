@@ -120,6 +120,7 @@ export const CesiumComponent: React.FunctionComponent<{
                 geocoder: false,
                 infoBox: true,
                 shouldAnimate: true,
+                sceneModePicker: false,
                 // timeline: false, // If you want to hide timeline (and make a custom one)
             });
         }
