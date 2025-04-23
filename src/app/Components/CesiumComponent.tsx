@@ -114,7 +114,7 @@ export const CesiumComponent: React.FunctionComponent<{
 
             cesiumViewer.current = new CesiumJs.Viewer(cesiumContainerRef.current, {
                 terrain: CesiumJs.Terrain.fromWorldTerrain(),
-                navigationHelpButton: true,
+                navigationHelpButton: false,
                 baseLayerPicker: false,
                 homeButton: false,
                 geocoder: false,
