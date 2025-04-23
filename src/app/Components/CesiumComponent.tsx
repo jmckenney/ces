@@ -23,10 +23,10 @@ export const CesiumComponent: React.FunctionComponent<{
     const resetCamera = React.useCallback(async () => {
         if (cesiumViewer.current !== null) {
             cesiumViewer.current.scene.camera.setView({
-                destination: CesiumJs.Cartesian3.fromDegrees(0, 0, 12000000), // Zoomed out to see the whole Earth
+                destination: CesiumJs.Cartesian3.fromDegrees(90, 0, 12000000), // Zoomed out to see the whole Earth
                 orientation: {
                   heading: CesiumJs.Math.toRadians(0),
-                  pitch: CesiumJs.Math.toRadians(-85),
+                  pitch: CesiumJs.Math.toRadians(-80),
                 },
             });
         }

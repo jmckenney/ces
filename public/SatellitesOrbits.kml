@@ -72,6 +72,62 @@
         </LabelStyle>
     </Style>
 
+    <Style id="ScheduledUploadStyle">
+        <IconStyle>
+            <scale>3.5</scale>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/shapes/arrow-reverse.png</href>
+            </Icon>
+            <color>ff00ffff</color>
+        </IconStyle>
+        <LabelStyle>
+            <scale>1.2</scale>
+            <color>ff00ffff</color>
+        </LabelStyle>
+    </Style>
+
+    <Style id="CompletedUploadStyle">
+        <IconStyle>
+            <scale>3.5</scale>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/shapes/arrow-reverse.png</href>
+            </Icon>
+            <color>ff00ff00</color>
+        </IconStyle>
+        <LabelStyle>
+            <scale>1.2</scale>
+            <color>ff00ff00</color>
+        </LabelStyle>
+    </Style>
+
+    <Style id="ScheduledSignalStyle">
+        <IconStyle>
+            <scale>3.5</scale>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/shapes/antenna.png</href>
+            </Icon>
+            <color>ff00ffff</color>
+        </IconStyle>
+        <LabelStyle>
+            <scale>1.2</scale>
+            <color>ff00ffff</color>
+        </LabelStyle>
+    </Style>
+
+    <Style id="CompletedSignalStyle">
+        <IconStyle>
+            <scale>3.5</scale>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/shapes/antenna.png</href>
+            </Icon>
+            <color>ff00ff00</color>
+        </IconStyle>
+        <LabelStyle>
+            <scale>1.2</scale>
+            <color>ff00ff00</color>
+        </LabelStyle>
+    </Style>
+
     <Folder>
         <name>MUSAT2</name>
         <Placemark>
@@ -157,7 +213,7 @@
             <description>Scheduled photo capture location</description>
             <Point>
                 <altitudeMode>absolute</altitudeMode>
-                <coordinates>-120.0,0,510000</coordinates>
+                <coordinates>-120.0,0,621010</coordinates>
             </Point>
         </Placemark>
 
@@ -171,7 +227,62 @@
             <description>Photo successfully captured at this location</description>
             <Point>
                 <altitudeMode>absolute</altitudeMode>
-                <coordinates>-120.0,0,510000</coordinates>
+                <coordinates>-120.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
+
+        <Placemark>
+            <name>Scheduled Upload</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:00:00Z</begin>
+                <end>2025-04-21T00:10:00Z</end>
+            </TimeSpan>
+            <styleUrl>#ScheduledUploadStyle</styleUrl>
+            <description>Scheduled data upload location</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>114.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Upload Complete</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:10:00Z</begin>
+                <end>2025-04-21T01:00:00Z</end>
+            </TimeSpan>
+            <styleUrl>#CompletedUploadStyle</styleUrl>
+            <description>Data upload completed at this location</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>114.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
+
+        <Placemark>
+            <name>Photo 2 Scheduled</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:00:00Z</begin>
+                <end>2025-04-21T00:30:00Z</end>
+            </TimeSpan>
+            <styleUrl>#ScheduledPhotoStyle</styleUrl>
+            <description>Scheduled photo capture location</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>-126.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
+
+        <Placemark>
+            <name>Photo 2 Complete</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:30:00Z</begin>
+                <end>2025-04-21T01:00:00Z</end>
+            </TimeSpan>
+            <styleUrl>#CapturedPhotoStyle</styleUrl>
+            <description>Photo 2 successfully captured at this location</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>-126.0,0,621010</coordinates>
             </Point>
         </Placemark>
     </Folder>
