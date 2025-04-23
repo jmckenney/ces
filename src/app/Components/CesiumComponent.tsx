@@ -195,8 +195,8 @@ export const CesiumComponent: React.FunctionComponent<{
                 onClick={toggleFollowMode}
                 style={{
                     position: 'absolute',
-                    top: '20px',
-                    left: '20px',
+                    top: '10px',
+                    left: '10px',
                     padding: '10px 20px',
                     backgroundColor: isFollowMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.1)',
                     color: 'white',

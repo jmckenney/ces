@@ -31,7 +31,7 @@ const EventTimelinePanel: React.FC<EventTimelinePanelProps> = ({
     return (
         <div style={{
             position: 'absolute',
-            left: '5px',
+            left: '0px',
             top: '80px',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
             padding: '15px',
@@ -41,6 +41,7 @@ const EventTimelinePanel: React.FC<EventTimelinePanelProps> = ({
             overflowY: 'auto',
             color: 'white',
             zIndex: 1000,
+            fontFamily: 'sans-serif'
         }}>
             <div style={{ paddingTop: '15px' }}>
                 {events.map((event, index) => (
