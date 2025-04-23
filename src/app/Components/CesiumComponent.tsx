@@ -144,20 +144,21 @@ export const CesiumComponent: React.FunctionComponent<{
         loadEvents();
     }, []);
 
-    const handleEventClick = React.useCallback((time: string) => {
+    const handleEventClick = React.useCallback((name: string, coordinates: number[]) => {
         if (!cesiumViewer.current) return;
         
-        const julianDate = CesiumJs.JulianDate.fromIso8601(time);
-        cesiumViewer.current.clock.currentTime = julianDate;
-        
-        // Optional: Zoom to event location
-        const event = events.find(e => e.scheduledTime === time);
+        const event = events.find(e => e.name === name);
         if (event) {
+            // Set time to event's scheduled time
+            const julianDate = CesiumJs.JulianDate.fromIso8601(event.scheduledTime);
+            cesiumViewer.current.clock.currentTime = julianDate;
+
+            // Fly to event location
             cesiumViewer.current.camera.flyTo({
                 destination: CesiumJs.Cartesian3.fromDegrees(
-                    event.coordinates[0],
-                    event.coordinates[1],
-                    event.coordinates[2] + 500000 // View from 1000km above
+                    coordinates[0], // longitude
+                    coordinates[1], // latitude
+                    coordinates[2] + 500000 // altitude + viewing distance
                 ),
                 orientation: {
                     heading: CesiumJs.Math.toRadians(0),
@@ -167,22 +168,6 @@ export const CesiumComponent: React.FunctionComponent<{
             });
         }
     }, [CesiumJs.JulianDate, CesiumJs.Cartesian3, CesiumJs.Math, events]);
-
-    // Update event statuses based on current time
-    const updateEventStatuses = React.useCallback(() => {
-        if (!cesiumViewer.current) return;
-        
-        const currentTime = cesiumViewer.current.clock.currentTime;
-        setEvents(prevEvents => 
-            prevEvents.map(event => ({
-                ...event,
-                status: CesiumJs.JulianDate.greaterThan(
-                    currentTime, 
-                    CesiumJs.JulianDate.fromIso8601(event.completionTime)
-                ) ? 'completed' : 'scheduled'
-            }))
-        );
-    }, [CesiumJs.JulianDate]);
 
     return (
         <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>

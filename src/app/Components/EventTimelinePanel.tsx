@@ -8,11 +8,12 @@ interface Event {
     completionTime: string;
     type: 'photo' | 'upload' | 'signal';
     status: 'scheduled' | 'completed';
+    coordinates: number[];
 }
 
 interface EventTimelinePanelProps {
     events: Event[];
-    onEventClick: (time: string) => void;
+    onEventClick: (name: string, coordinates: number[]) => void;
 }
 
 const EventTimelinePanel: React.FC<EventTimelinePanelProps> = ({ 
@@ -43,39 +44,38 @@ const EventTimelinePanel: React.FC<EventTimelinePanelProps> = ({
             zIndex: 1000,
             fontFamily: 'sans-serif'
         }}>
-            <div style={{ paddingTop: '15px' }}>
-                {events.map((event, index) => (
-                    <div
-                        key={index}
-                        onClick={() => onEventClick(event.scheduledTime)}
-                        style={{
-                            padding: '10px',
-                            marginBottom: '8px',
-                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            borderLeft: `4px solid ${event.status === 'completed' ? '#4CAF50' : '#FFC107'}`,
-                            transition: 'all 0.2s ease',
-                        }}
-                        onMouseOver={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                        }}
-                        onMouseOut={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                        }}
-                    >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <span style={{ fontSize: '20px' }}>{getEventIcon(event.type)}</span>
-                            <div>
-                                <div style={{ fontWeight: 'bold' }}>{event.name}</div>
-                                <div style={{ fontSize: '0.8em', color: '#aaa' }}>
-                                    {new Date(event.scheduledTime).toLocaleTimeString()}
-                                </div>
+            <h3 style={{ margin: '0 0 15px 0', color: '#fff' }}>Mission Timeline</h3>
+            {events.map((event, index) => (
+                <div
+                    key={index}
+                    onClick={() => onEventClick(event.name, event.coordinates)}
+                    style={{
+                        padding: '10px',
+                        marginBottom: '8px',
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        borderLeft: `4px solid ${event.status === 'completed' ? '#4CAF50' : '#FFC107'}`,
+                        transition: 'all 0.2s ease',
+                    }}
+                    onMouseOver={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                    }}
+                    onMouseOut={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    }}
+                >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <span style={{ fontSize: '20px' }}>{getEventIcon(event.type)}</span>
+                        <div>
+                            <div style={{ fontWeight: 'bold' }}>{event.name}</div>
+                            <div style={{ fontSize: '0.8em', color: '#aaa' }}>
+                                {event.coordinates.join(', ')}
                             </div>
                         </div>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
     );
 };

@@ -2,63 +2,6 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
     <name>LEO Satellites with Events</name>
-    
-    <Style id="PhotoCaptureStyle">
-        <IconStyle>
-            <scale>1.5</scale>
-            <Icon>
-                <href>http://maps.google.com/mapfiles/kml/shapes/camera.png</href>
-            </Icon>
-            <color>ffff0000</color>
-        </IconStyle>
-        <LabelStyle>
-            <scale>1.2</scale>
-            <color>ffffffff</color>
-        </LabelStyle>
-    </Style>
-    
-    <Style id="DataUploadStyle">
-        <IconStyle>
-            <scale>0.8</scale>
-            <Icon><href>http://maps.google.com/mapfiles/kml/shapes/info.png</href></Icon>
-        </IconStyle>
-    </Style>
-    
-    <Style id="TelemetryCheckStyle">
-        <IconStyle>
-            <scale>0.8</scale>
-            <Icon><href>http://maps.google.com/mapfiles/kml/shapes/target.png</href></Icon>
-        </IconStyle>
-    </Style>
-    
-    <Style id="ThermalReadingStyle">
-        <IconStyle>
-            <scale>0.8</scale>
-            <Icon><href>http://maps.google.com/mapfiles/kml/shapes/thermometer.png</href></Icon>
-        </IconStyle>
-    </Style>
-    
-    <Style id="SignalTestStyle">
-        <IconStyle>
-            <scale>0.8</scale>
-            <Icon><href>http://maps.google.com/mapfiles/kml/shapes/ranger_station.png</href></Icon>
-        </IconStyle>
-    </Style>
-    
-    <Style id="ScheduledPhotoStyle">
-        <IconStyle>
-            <scale>3.5</scale>
-            <Icon>
-                <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
-            </Icon>
-            <color>ff00ffff</color>
-        </IconStyle>
-        <LabelStyle>
-            <scale>1.2</scale>
-            <color>ff00ffff</color>
-        </LabelStyle>
-    </Style>
-
     <Style id="CapturedPhotoStyle">
         <IconStyle>
             <scale>3.5</scale>
@@ -71,21 +14,6 @@
             <color>ffffff</color>
         </LabelStyle>
     </Style>
-
-    <Style id="ScheduledUploadStyle">
-        <IconStyle>
-            <scale>3.5</scale>
-            <Icon>
-                <href>http://maps.google.com/mapfiles/kml/shapes/arrow-reverse.png</href>
-            </Icon>
-            <color>ff00ffff</color>
-        </IconStyle>
-        <LabelStyle>
-            <scale>1.2</scale>
-            <color>ff00ffff</color>
-        </LabelStyle>
-    </Style>
-
     <Style id="CompletedUploadStyle">
         <IconStyle>
             <scale>3.5</scale>
@@ -99,35 +27,6 @@
             <color>ff00ff00</color>
         </LabelStyle>
     </Style>
-
-    <Style id="ScheduledSignalStyle">
-        <IconStyle>
-            <scale>3.5</scale>
-            <Icon>
-                <href>http://maps.google.com/mapfiles/kml/shapes/antenna.png</href>
-            </Icon>
-            <color>ff00ffff</color>
-        </IconStyle>
-        <LabelStyle>
-            <scale>1.2</scale>
-            <color>ff00ffff</color>
-        </LabelStyle>
-    </Style>
-
-    <Style id="CompletedSignalStyle">
-        <IconStyle>
-            <scale>3.5</scale>
-            <Icon>
-                <href>http://maps.google.com/mapfiles/kml/shapes/antenna.png</href>
-            </Icon>
-            <color>ff00ff00</color>
-        </IconStyle>
-        <LabelStyle>
-            <scale>1.2</scale>
-            <color>ff00ff00</color>
-        </LabelStyle>
-    </Style>
-
     <Folder>
         <name>MUSAT2</name>
         <Placemark>
@@ -204,85 +103,68 @@
         </Placemark>
 
         <Placemark>
-            <name>Scheduled Upload</name>
+            <name>Data Download 1</name>
             <TimeSpan>
                 <begin>2025-04-21T00:00:00Z</begin>
-                <end>2025-04-21T00:10:00Z</end>
-            </TimeSpan>
-            <styleUrl>#ScheduledUploadStyle</styleUrl>
-            <description>Scheduled data upload location</description>
-            <Point>
-                <altitudeMode>absolute</altitudeMode>
-                <coordinates>114.0,0,621010</coordinates>
-            </Point>
-        </Placemark>
-        <Placemark>
-            <name>Upload Complete</name>
-            <TimeSpan>
-                <begin>2025-04-21T00:10:00Z</begin>
                 <end>2025-04-21T01:00:00Z</end>
             </TimeSpan>
             <styleUrl>#CompletedUploadStyle</styleUrl>
-            <description>Data upload completed at this location</description>
+            <description>Data download</description>
             <Point>
                 <altitudeMode>absolute</altitudeMode>
                 <coordinates>114.0,0,621010</coordinates>
             </Point>
         </Placemark>
-
-        
         <Placemark>
-            <name>Photo 1 Scheduled</name>
+            <name>Photo 1</name>
             <TimeSpan>
                 <begin>2025-04-21T00:00:00Z</begin>
-                <end>2025-04-21T00:30:00Z</end>
-            </TimeSpan>
-            <styleUrl>#ScheduledPhotoStyle</styleUrl>
-            <description>Scheduled photo capture location</description>
-            <Point>
-                <altitudeMode>absolute</altitudeMode>
-                <coordinates>-120.0,0,621010</coordinates>
-            </Point>
-        </Placemark>
-
-        <Placemark>
-            <name>Photo 1 Captured</name>
-            <TimeSpan>
-                <begin>2025-04-21T00:30:00Z</begin>
                 <end>2025-04-21T01:00:00Z</end>
             </TimeSpan>
             <styleUrl>#CapturedPhotoStyle</styleUrl>
-            <description>Photo successfully captured at this location</description>
-            <Point>
-                <altitudeMode>absolute</altitudeMode>
-                <coordinates>-120.0,0,621010</coordinates>
-            </Point>
-        </Placemark>
-        <Placemark>
-            <name>Photo 2 Scheduled</name>
-            <TimeSpan>
-                <begin>2025-04-21T00:00:00Z</begin>
-                <end>2025-04-21T00:31:00Z</end>
-            </TimeSpan>
-            <styleUrl>#ScheduledPhotoStyle</styleUrl>
-            <description>Scheduled photo capture location</description>
+            <description>Photo 1 Capture</description>
             <Point>
                 <altitudeMode>absolute</altitudeMode>
                 <coordinates>-126.0,0,621010</coordinates>
             </Point>
         </Placemark>
-
         <Placemark>
-            <name>Photo 2 Captured</name>
+            <name>Photo 2</name>
             <TimeSpan>
-                <begin>2025-04-21T00:31:00Z</begin>
+                <begin>2025-04-21T00:00:00Z</begin>
                 <end>2025-04-21T01:00:00Z</end>
             </TimeSpan>
             <styleUrl>#CapturedPhotoStyle</styleUrl>
-            <description>Photo 2 successfully captured at this location</description>
+            <description>Photo 2 Capture</description>
             <Point>
                 <altitudeMode>absolute</altitudeMode>
-                <coordinates>-126.0,0,621010</coordinates>
+                <coordinates>-120.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Data Download 2</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:00:00Z</begin>
+                <end>2025-04-21T01:00:00Z</end>
+            </TimeSpan>
+            <styleUrl>#CompletedUploadStyle</styleUrl>
+            <description>Data download 2</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>-70.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark>
+            <name>Photo 3</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:00:00Z</begin>
+                <end>2025-04-21T01:00:00Z</end>
+            </TimeSpan>
+            <styleUrl>#CapturedPhotoStyle</styleUrl>
+            <description>Photo 3 Capture</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>20.0,0,621010</coordinates>
             </Point>
         </Placemark>
     </Folder>

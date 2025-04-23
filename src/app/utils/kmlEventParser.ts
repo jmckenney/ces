@@ -60,8 +60,5 @@ export const parseKMLEvents = async (): Promise<KMLEvent[]> => {
         }
     }
 
-    // Sort events by scheduled time
-    return events.sort((a, b) => 
-        new Date(a.scheduledTime).getTime() - new Date(b.scheduledTime).getTime()
-    );
+    return events
 }; 
