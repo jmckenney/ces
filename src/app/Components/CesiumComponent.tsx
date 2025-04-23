@@ -4,8 +4,11 @@ import React from 'react'
 import type { CesiumType } from '../types/cesium'
 import { type Viewer, Entity } from 'cesium';
 import type { Position } from '../types/position';
+import type { KMLEvent } from '../types/kml';
 //NOTE: This is required to get the stylings for default Cesium UI and controls
 import 'cesium/Build/Cesium/Widgets/widgets.css';
+import EventTimelinePanel from './EventTimelinePanel';
+import { parseKMLEvents } from '../utils/kmlEventParser';
 
 export const CesiumComponent: React.FunctionComponent<{
     CesiumJs: CesiumType,
@@ -19,6 +22,7 @@ export const CesiumComponent: React.FunctionComponent<{
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [isFollowMode, setIsFollowMode] = React.useState(false);
     const satelliteEntityRef = React.useRef<Entity | null>(null);
+    const [events, setEvents] = React.useState<KMLEvent[]>([]);
 
     const resetCamera = React.useCallback(async () => {
         if (cesiumViewer.current !== null) {
@@ -126,6 +130,60 @@ export const CesiumComponent: React.FunctionComponent<{
         initializeCesiumJs();
     }, [positions, isLoaded]);
 
+    // Load events from KML
+    React.useEffect(() => {
+        const loadEvents = async () => {
+            try {
+                const kmlEvents = await parseKMLEvents();
+                setEvents(kmlEvents);
+            } catch (error) {
+                console.error('Error loading KML events:', error);
+            }
+        };
+        
+        loadEvents();
+    }, []);
+
+    const handleEventClick = React.useCallback((time: string) => {
+        if (!cesiumViewer.current) return;
+        
+        const julianDate = CesiumJs.JulianDate.fromIso8601(time);
+        cesiumViewer.current.clock.currentTime = julianDate;
+        
+        // Optional: Zoom to event location
+        const event = events.find(e => e.scheduledTime === time);
+        if (event) {
+            cesiumViewer.current.camera.flyTo({
+                destination: CesiumJs.Cartesian3.fromDegrees(
+                    event.coordinates[0],
+                    event.coordinates[1],
+                    event.coordinates[2] + 500000 // View from 1000km above
+                ),
+                orientation: {
+                    heading: CesiumJs.Math.toRadians(0),
+                    pitch: CesiumJs.Math.toRadians(-80),
+                    roll: 0
+                }
+            });
+        }
+    }, [CesiumJs.JulianDate, CesiumJs.Cartesian3, CesiumJs.Math, events]);
+
+    // Update event statuses based on current time
+    const updateEventStatuses = React.useCallback(() => {
+        if (!cesiumViewer.current) return;
+        
+        const currentTime = cesiumViewer.current.clock.currentTime;
+        setEvents(prevEvents => 
+            prevEvents.map(event => ({
+                ...event,
+                status: CesiumJs.JulianDate.greaterThan(
+                    currentTime, 
+                    CesiumJs.JulianDate.fromIso8601(event.completionTime)
+                ) ? 'completed' : 'scheduled'
+            }))
+        );
+    }, [CesiumJs.JulianDate]);
+
     return (
         <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>
             <div
@@ -140,7 +198,7 @@ export const CesiumComponent: React.FunctionComponent<{
                     top: '20px',
                     left: '20px',
                     padding: '10px 20px',
-                    backgroundColor: isFollowMode ? '#4CAF50' : '#2196F3',
+                    backgroundColor: isFollowMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.1)',
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',
@@ -151,6 +209,10 @@ export const CesiumComponent: React.FunctionComponent<{
             >
                 {isFollowMode ? 'Exit Follow Mode' : 'Follow Satellite'}
             </button>
+            <EventTimelinePanel 
+                events={events}
+                onEventClick={handleEventClick}
+            />
         </div>
     )
 }

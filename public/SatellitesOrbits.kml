@@ -202,34 +202,6 @@
                 </coordinates>
             </LineString>
         </Placemark>
-        
-        <Placemark>
-            <name>Scheduled Photo</name>
-            <TimeSpan>
-                <begin>2025-04-21T00:00:00Z</begin>
-                <end>2025-04-21T00:30:00Z</end>
-            </TimeSpan>
-            <styleUrl>#ScheduledPhotoStyle</styleUrl>
-            <description>Scheduled photo capture location</description>
-            <Point>
-                <altitudeMode>absolute</altitudeMode>
-                <coordinates>-120.0,0,621010</coordinates>
-            </Point>
-        </Placemark>
-
-        <Placemark>
-            <name>Photo Captured</name>
-            <TimeSpan>
-                <begin>2025-04-21T00:30:00Z</begin>
-                <end>2025-04-21T01:00:00Z</end>
-            </TimeSpan>
-            <styleUrl>#CapturedPhotoStyle</styleUrl>
-            <description>Photo successfully captured at this location</description>
-            <Point>
-                <altitudeMode>absolute</altitudeMode>
-                <coordinates>-120.0,0,621010</coordinates>
-            </Point>
-        </Placemark>
 
         <Placemark>
             <name>Scheduled Upload</name>
@@ -258,11 +230,39 @@
             </Point>
         </Placemark>
 
+        
+        <Placemark>
+            <name>Photo 1 Scheduled</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:00:00Z</begin>
+                <end>2025-04-21T00:30:00Z</end>
+            </TimeSpan>
+            <styleUrl>#ScheduledPhotoStyle</styleUrl>
+            <description>Scheduled photo capture location</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>-120.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
+
+        <Placemark>
+            <name>Photo 1 Captured</name>
+            <TimeSpan>
+                <begin>2025-04-21T00:30:00Z</begin>
+                <end>2025-04-21T01:00:00Z</end>
+            </TimeSpan>
+            <styleUrl>#CapturedPhotoStyle</styleUrl>
+            <description>Photo successfully captured at this location</description>
+            <Point>
+                <altitudeMode>absolute</altitudeMode>
+                <coordinates>-120.0,0,621010</coordinates>
+            </Point>
+        </Placemark>
         <Placemark>
             <name>Photo 2 Scheduled</name>
             <TimeSpan>
                 <begin>2025-04-21T00:00:00Z</begin>
-                <end>2025-04-21T00:30:00Z</end>
+                <end>2025-04-21T00:31:00Z</end>
             </TimeSpan>
             <styleUrl>#ScheduledPhotoStyle</styleUrl>
             <description>Scheduled photo capture location</description>
@@ -273,9 +273,9 @@
         </Placemark>
 
         <Placemark>
-            <name>Photo 2 Complete</name>
+            <name>Photo 2 Captured</name>
             <TimeSpan>
-                <begin>2025-04-21T00:30:00Z</begin>
+                <begin>2025-04-21T00:31:00Z</begin>
                 <end>2025-04-21T01:00:00Z</end>
             </TimeSpan>
             <styleUrl>#CapturedPhotoStyle</styleUrl>
