@@ -37,7 +37,7 @@ const EventTimelinePanel: React.FC<EventTimelinePanelProps> = ({
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
             padding: '15px',
             borderRadius: '8px',
-            width: '300px',
+            width: '230px',
             maxHeight: 'calc(100vh - 100px)',
             overflowY: 'auto',
             color: 'white',

@@ -180,6 +180,8 @@ export const CesiumComponent: React.FunctionComponent<{
             <button
                 onClick={toggleFollowMode}
                 style={{
+                    width: '210px',
+                    textAlign: 'left',
                     position: 'absolute',
                     top: '10px',
                     left: '10px',
