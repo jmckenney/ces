@@ -4,6 +4,12 @@ A Next.js application that demonstrates satellite orbit visualization using Cesi
 - Orbital path visualization
 - Event Listing and Timeline
 
+| Mobile | Desktop |
+|--------|--------|
+| ![localhost_3000_(iPhone 14 Pro Max) (1)](https://github.com/user-attachments/assets/b3df2cac-1649-41ea-af18-ef3ffbd51e2c) | <img width="1129" alt="Screenshot 2025-04-23 at 7 11 21 PM" src="https://github.com/user-attachments/assets/f84dacd2-0398-40f2-b239-9611710d8170" />
+ |
+
+
 ## Prerequisites
 
 - Node.js (v18 or newer recommended)
