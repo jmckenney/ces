@@ -86,7 +86,7 @@ timeline editing is [not supported](https://groups.google.com/g/cesium-dev/c/WF0
 Thank you to [nextjs-ts-cesium-example](https://github.com/hyundotio/nextjs-ts-cesium-example/tree/main) for providing inspiration for the foundational boilerplate of this project.
 
 ## Deployment
-Automatically deploying on each push to main branch via Vercel Github integration.
+Automatically deploying on each push to main branch via Vercel Github integration. Available at https://ces-tan.vercel.app/
 
 ## Next Steps
 - Fetch the orbit and paths along with the Satellite movement data.
