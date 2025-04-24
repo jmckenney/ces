@@ -1,8 +1,8 @@
-# Cesium Satellite Visualization in Next.js 14
+# Cesium Satellite Visualization in Next.js 15
 
 A Next.js application that demonstrates satellite orbit visualization using CesiumJS, featuring:
 - Orbital path visualization
-- 3D terrain visualization
+- Event Listing and Timeline
 
 ## Prerequisites
 
@@ -69,13 +69,24 @@ The application will be available at [http://localhost:3000](http://localhost:30
 
 - The application uses Next.js with TypeScript for type safety
 - CesiumJS is integrated as a client-side component
-- Turbopack is enabled for faster development builds
 - KML and CZML formats are used for orbit and event data
 
 ## Cesium Integration Strategy
 - Do no harm. In other words, ensure easy future upgrades and only customize
-where heavily documented and supported by the Cesium team. For instance, official
+where heavily documented and supported by the Cesium team. Example, official
 timeline editing is [not supported](https://groups.google.com/g/cesium-dev/c/WF065mEMqCI/m/6RL2_ygTAgAJ?pli=1).
 
 ## Credits
 Thank you to [nextjs-ts-cesium-example](https://github.com/hyundotio/nextjs-ts-cesium-example/tree/main) for providing inspiration for the foundational boilerplate of this project.
+
+## Deployment
+Automatically deploying on each push to main branch via Vercel Github integration.
+
+## Next Steps
+- Fetch the orbit and paths along with the Satellite movement data.
+- Enhance timeline to handle tens of events. Possibly allow a drawer or menu toggle for visibility.
+Have a max-height and vertical scroll.
+- Choose UI library, initial color scheme, and styling.
+- Choose form components, validation approach and overall admin experience for CRUD of events.
+- As soon as foundational structure solidifies, bolster with unit tests. Followed shortly by some cypress e2e tests triggered in CI pipeline.
+- Add Grafana RUM for monitoring.

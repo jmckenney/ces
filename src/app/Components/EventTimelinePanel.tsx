@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react';
 
 interface Event {
@@ -23,9 +21,7 @@ const EventTimelinePanel: React.FC<EventTimelinePanelProps> = ({
     const getEventIcon = (type: string) => {
         switch(type) {
             case 'photo': return '📸';
-            case 'upload': return '⬆️';
-            case 'signal': return '📡';
-            default: return '📍';
+            default: return '⬆️';
         }
     };
 
